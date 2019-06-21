@@ -13,56 +13,38 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<mule.version>3.9.0</mule.version>
+	    <mule.maven.plugin.version>3.2.7</mule.maven.plugin.version>
     	<mule.tools.version>1.2</mule.tools.version>
 	</properties>
-
-	<build>
+<build>
 		<plugins>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-app-maven-plugin</artifactId>
-				<version>${mule.tools.version}</version>
+				<artifactId>mule-maven-plugin</artifactId>
+				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
-				<configuration>
-                   <deploymentType>cloudhub</deploymentType>
-                    <muleVersion>3.9.0</muleVersion>
-                    <username>venkat_vjw</username>
-                    <password>Admin@123</password>
-                     <workerType>Micro</workerType>
-                     <redeploy>true</redeploy>
-                     <environment>Sandbox</environment>
+								<configuration>
+				<deploymentType>cloudhub</deploymentType>
+				<muleVersion>3.9.0</muleVersion>
+				<username>venkat_vjw</username>
+				<password>Admin@123</password>
+				<workerType>Micro</workerType>
+				<redeploy>true</redeploy>
+				<environment>Production</environment>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.7</version>
 				<executions>
-					<execution>
-						<id>add-resource</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>add-resource</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<directory>src/main/app/</directory>
-								</resource>
-								<resource>
-									<directory>src/main/api/</directory>
-								</resource>
-								<resource>
-									<directory>mappings/</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
+				<execution>
+				 <id>deploy</id>
+				 <phase>deploy</phase>
+				 <goals>
+				 <goal>deploy</goal>
+				 </goals>
+				 </execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
-
+	
 	<!-- Mule Dependencies -->
 	<dependencies>
 		<!-- Xml configuration -->
